@@ -106,6 +106,15 @@
   .sec-head p{color:var(--grey);font-size:1.15rem;max-width:34rem}
   @media (max-width:900px){.sec-head{grid-template-columns:1fr;gap:1.25rem}}
 
+  /* Anlässe */
+  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:4rem;border-top:2px solid var(--ink)}
+  .reasons > div{padding:2rem 2rem 0 0}
+  .reasons > div + div{border-left:1px solid var(--rule);padding-left:2rem}
+  .reasons h3{font-size:clamp(1.5rem,2.2vw,1.9rem);letter-spacing:-.03em;line-height:1.1}
+  .reasons p{color:var(--grey);margin-top:.9rem}
+  .reasons p.lead{color:var(--ink);font-weight:600}
+  @media (max-width:900px){.reasons{grid-template-columns:1fr}.reasons > div{padding:1.75rem 0 0}.reasons > div + div{border-left:0;padding-left:0;margin-top:1.75rem;border-top:1px solid var(--rule)}}
+
   /* Ablauf */
   .ablauf{background:var(--white)}
   .steps{list-style:none;margin:4rem 0 0;padding:0;counter-reset:s}
@@ -205,6 +214,7 @@
       <span class="wordmark"><b>Aufteilungsservice</b><small>Andrea Lehmann</small></span>
     </a>
     <nav aria-label="Seitennavigation">
+      <a href="#vorteile">Vorteile</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#preise">Preise</a>
       <a href="#unterlagen">Unterlagen</a>
@@ -254,6 +264,31 @@
       </div>
     </div>
   </div>
+
+  <section id="vorteile" aria-labelledby="vorteile-title">
+    <div class="frame">
+      <div class="sec-head">
+        <h2 id="vorteile-title">Wann eine Aufteilung sinnvoll ist.</h2>
+        <p>Drei Anlässe, bei denen sich die Aufteilung in Eigentumswohnungen für Sie lohnt.</p>
+      </div>
+      <div class="reasons">
+        <div>
+          <h3>Verkauf</h3>
+          <p class="lead">Sie möchten Ihr Mehrfamilienhaus verkaufen? Beim Einzelverkauf der Wohnungen erzielen Sie häufig 15–25 % höhere Verkaufserlöse.</p>
+          <p>Auch ohne Einzelverkauf sprechen Sie mit einer vorliegenden Teilungserklärung mehr Kaufinteressenten an.</p>
+        </div>
+        <div>
+          <h3>Erbe und Schenkung</h3>
+          <p class="lead">Sie regeln die zukünftige Erbschaft oder Schenkung und vermeiden so spätere Erbstreitigkeiten.</p>
+          <p>Sie haben eine Immobilie geerbt und möchten sie aufteilen? Sprechen Sie uns an.</p>
+        </div>
+        <div>
+          <h3>Wohnen und Gewerbe trennen</h3>
+          <p class="lead">Sie sorgen für rechtssichere Eigentumsverhältnisse und eine saubere Trennung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="ablauf" class="ablauf" aria-labelledby="ablauf-title">
     <div class="frame">
@@ -402,7 +437,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     if (!e.isIntersecting) return;
     links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
-  ['ablauf', 'preise', 'unterlagen', 'kontakt'].forEach(id => io.observe(document.getElementById(id)));
+  ['vorteile', 'ablauf', 'preise', 'unterlagen', 'kontakt'].forEach(id => io.observe(document.getElementById(id)));
 })();
 
 /* ---------- Scroll-Story mit 3D-Haus ---------- */
