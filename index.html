@@ -7,6 +7,7 @@
 <title>Aufteilungsservice Lehmann – Mehrfamilienhaus in Eigentumswohnungen aufteilen</title>
 <meta name="description" content="Aufteilungspläne und Abgeschlossenheitsbescheinigung für Ihr Mehrfamilienhaus. Festpreis ab 800 €.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23fff'/><rect x='20' y='26' width='15' height='9' fill='%231f4fd1'/><path d='M5 17 20 5l15 12v18H5zM5 17h30M20 17v18M5 26h30' fill='none' stroke='%23121417' stroke-width='2.2'/></svg>">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
     --paper:#ecedef;
@@ -107,23 +108,39 @@
   @media (max-width:900px){.sec-head{grid-template-columns:1fr;gap:1.25rem}}
 
   /* Anlässe */
-  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:4rem;border-top:2px solid var(--ink)}
-  .reasons > div{padding:2rem 2rem 0 0}
-  .reasons > div + div{border-left:1px solid var(--rule);padding-left:2rem}
-  .reasons h3{font-size:clamp(1.5rem,2.2vw,1.9rem);letter-spacing:-.03em;line-height:1.1}
-  .reasons p{color:var(--grey);margin-top:.9rem}
-  .reasons p.lead{color:var(--ink);font-weight:600}
-  @media (max-width:900px){.reasons{grid-template-columns:1fr}.reasons > div{padding:1.75rem 0 0}.reasons > div + div{border-left:0;padding-left:0;margin-top:1.75rem;border-top:1px solid var(--rule)}}
+  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,auto);gap:0 1.25rem;margin-top:4rem}
+  .reason{grid-row:span 4;display:grid;grid-template-rows:subgrid;row-gap:0;background:var(--white);padding:clamp(1.5rem,2.6vw,2.25rem);border-radius:var(--r);border-top:4px solid var(--ink);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .reason:hover{transform:translateY(-6px);box-shadow:0 24px 40px -28px rgba(18,20,23,.45)}
+  .reason .vis{height:4.5rem;display:flex;align-items:flex-end}
+  .reason .vis svg{width:56px;height:56px}
+  .reason h3{font-size:clamp(1.45rem,2vw,1.8rem);letter-spacing:-.03em;line-height:1.1;margin-top:1.5rem}
+  .reason p{color:var(--grey);margin-top:1rem}
+  .reason p.lead{color:var(--ink);font-weight:600;padding-top:1rem;border-top:1px solid var(--rule)}
+  .reason.hi{background:var(--blue);color:#fff;border-top-color:#0f2f86}
+  .reason.hi p{color:#d3def7}
+  .reason.hi p.lead{color:#fff;border-top-color:rgba(255,255,255,.3)}
+  .stat{font-size:clamp(3rem,4.6vw,4.4rem);font-weight:800;letter-spacing:-.05em;line-height:.85;white-space:nowrap}
+  .stat small{font-size:.35em;letter-spacing:0;margin-left:.1em}
+  @media (max-width:900px){.reasons{grid-template-columns:1fr;grid-template-rows:none;gap:1.25rem}.reason{grid-row:auto;grid-template-rows:none}}
 
-  /* Ablauf */
+  /* Ablauf als Zeitstrahl */
   .ablauf{background:var(--white)}
-  .steps{list-style:none;margin:4rem 0 0;padding:0;counter-reset:s}
-  .steps li{counter-increment:s;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:2rem;padding:1.75rem 0;border-top:1px solid var(--rule);align-items:baseline}
-  .steps li:last-child{border-bottom:1px solid var(--rule)}
-  .steps h3{font-size:clamp(1.5rem,2.6vw,2.1rem);display:flex;gap:1.25rem;align-items:baseline;letter-spacing:-.03em;line-height:1.1}
-  .steps h3::before{content:counter(s);color:var(--blue);min-width:1.4ch}
-  .steps p{color:var(--grey);max-width:36rem}
-  @media (max-width:900px){.steps li{grid-template-columns:1fr;gap:.6rem}.steps p{padding-left:calc(1.4ch + 1.25rem)}}
+  .steps{list-style:none;margin:4.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(3,auto);gap:0 1.5rem;position:relative;--prog:0}
+  .steps::before,.steps::after{content:"";position:absolute;left:0;right:0;top:1.5rem;height:2px;background:var(--rule)}
+  .steps::after{background:var(--blue);transform-origin:left;transform:scaleX(var(--prog))}
+  .steps li{grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:0;position:relative;z-index:1}
+  .steps .num{width:3rem;height:3rem;display:grid;place-items:center;border-radius:50%;background:var(--white);box-shadow:inset 0 0 0 2px var(--rule);font-weight:800;font-size:1.1rem;color:var(--grey);transition:background .4s,color .4s,box-shadow .4s,transform .4s}
+  .steps li.on .num{background:var(--blue);color:#fff;box-shadow:inset 0 0 0 2px var(--blue);transform:scale(1.08)}
+  .steps h3{font-size:clamp(1.2rem,1.6vw,1.45rem);letter-spacing:-.025em;line-height:1.15;margin-top:1.5rem}
+  .steps p{color:var(--grey);font-size:.98rem;margin-top:.75rem}
+  @media (max-width:900px){
+    .steps{grid-template-columns:1fr;grid-template-rows:none;gap:2rem;padding-left:4.5rem}
+    .steps::before,.steps::after{left:1.5rem;right:auto;top:0;bottom:0;width:2px;height:auto;transform-origin:top;transform:scaleY(var(--prog))}
+    .steps::before{transform:none}
+    .steps li{grid-row:auto;grid-template-rows:none;display:block}
+    .steps .num{position:absolute;left:-4.5rem;top:-.35rem}
+    .steps h3{margin-top:0}
+  }
 
   /* Preise */
   .pricing{background:var(--ink);color:#fff;border-top-color:var(--ink)}
@@ -148,16 +165,35 @@
   @media (max-width:900px){.calc{grid-template-columns:1fr}}
 
   /* Unterlagen */
-  .docs{display:grid;grid-template-columns:1fr 1fr;margin-top:4rem;border-top:2px solid var(--ink)}
-  .docs > div{padding:2rem 2rem 0 0}
-  .docs > div + div{border-left:1px solid var(--rule);padding-left:2rem}
+  .docs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);column-gap:0;margin-top:4rem;border-top:2px solid var(--ink)}
+  .docs > div{grid-row:span 3;display:grid;grid-template-rows:subgrid;padding:2rem 2.5rem 0 0}
+  .docs > div + div{border-left:1px solid var(--rule);padding:2rem 0 0 2.5rem}
   .docs h3{font-size:1.6rem;letter-spacing:-.03em;line-height:1.1}
   .docs p{color:var(--grey);margin-top:.6rem}
   .docs ol,.docs ul{list-style:none;margin:1.75rem 0 0;padding:0}
-  .docs li{padding:1rem 0;border-top:1px solid var(--rule);font-weight:700;font-size:1.15rem;display:flex;justify-content:space-between;gap:1rem}
-  .docs li span{font-weight:500;color:var(--grey);font-size:.95rem}
-  .docs .off li{color:var(--grey);font-weight:600;text-decoration:line-through;text-decoration-thickness:1px}
-  @media (max-width:760px){.docs{grid-template-columns:1fr}.docs > div + div{border-left:0;padding-left:0;margin-top:2rem}}
+  .docs li{padding:1.1rem 0;border-top:1px solid var(--rule);font-weight:700;font-size:1.15rem;line-height:1.3;display:flex;align-items:center;gap:1rem}
+  .docs li:last-child{border-bottom:1px solid var(--rule)}
+  .docs li span{margin-left:auto;font-weight:500;color:var(--grey);font-size:.95rem;text-align:right}
+  .docs li::before{content:"";flex:none;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5 7 11l5-6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") center/70% no-repeat;transition:transform .5s cubic-bezier(.3,1.6,.5,1) calc(var(--i,0)*120ms + .2s)}
+  .docs .off li{color:var(--grey);font-weight:600}
+  .docs .off li::before{background:#d5d8dc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 5l6 6M11 5l-6 6' fill='none' stroke='%235d636b' stroke-width='2'/%3E%3C/svg%3E") center/60% no-repeat}
+  .docs s{text-decoration:none;position:relative}
+  .docs s::after{content:"";position:absolute;left:-.1em;right:-.1em;top:55%;height:2px;background:var(--grey);transform-origin:left;transition:transform .6s cubic-bezier(.6,0,.2,1) calc(var(--i,0)*150ms + .5s)}
+  html.js .docs li[data-r]:not(.in)::before{transform:scale(0)}
+  html.js .docs li[data-r]:not(.in) s::after{transform:scaleX(0)}
+  @media (max-width:560px){.docs li{flex-wrap:wrap;row-gap:.2rem}.docs li span{flex-basis:100%;margin-left:2.6rem;text-align:left}}
+  @media (max-width:760px){.docs{grid-template-columns:1fr;grid-template-rows:none}.docs > div{grid-row:auto;display:block;padding-right:0}.docs > div + div{border-left:0;padding-left:0;margin-top:2.5rem}}
+
+  /* Scroll-Einblendungen */
+  html.js [data-r]{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*110ms)}
+  html.js [data-r].in{opacity:1;transform:none}
+  html.js .sec-head h2[data-r]{opacity:1;transform:translateY(.35em);clip-path:inset(0 0 100% 0);transition:clip-path 1s cubic-bezier(.7,0,.2,1),transform 1s cubic-bezier(.7,0,.2,1)}
+  html.js .sec-head h2[data-r].in{clip-path:inset(-.2em -.2em -.3em -.2em);transform:none}
+  html.js .reason[data-r].in{transition:opacity .8s cubic-bezier(.2,.7,.2,1) calc(var(--i,0)*110ms),transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  html.js .reason[data-r].in:hover{transform:translateY(-6px)}
+  .price.bump{animation:bump .35s cubic-bezier(.3,1.6,.5,1)}
+  @keyframes bump{from{transform:translateY(8px);opacity:.4}}
+  @media (prefers-reduced-motion:reduce){html.js [data-r],html.js .sec-head h2[data-r]{opacity:1;transform:none;clip-path:none;transition:none}html.js .docs li[data-r]::before{transform:none}html.js .docs li[data-r] s::after{transform:none}.price.bump{animation:none}.reason,.reason:hover{transition:none;transform:none}}
 
   /* Kontakt */
   .contact{background:var(--white)}
@@ -272,20 +308,23 @@
         <p>Drei Anlässe, bei denen sich die Aufteilung in Eigentumswohnungen für Sie lohnt.</p>
       </div>
       <div class="reasons">
-        <div>
+        <article class="reason hi">
+          <div class="vis"><p class="stat" aria-label="15 bis 25 Prozent"><span data-count="15">15</span>–<span data-count="25">25</span><small>%</small></p></div>
           <h3>Verkauf</h3>
-          <p class="lead">Sie möchten Ihr Mehrfamilienhaus verkaufen? Beim Einzelverkauf der Wohnungen erzielen Sie häufig 15–25 % höhere Verkaufserlöse.</p>
+          <p class="lead">Sie möchten Ihr Mehrfamilienhaus verkaufen? Beim Einzelverkauf der Wohnungen erzielen Sie häufig <span style="white-space:nowrap">15–25 %</span> höhere Verkaufserlöse.</p>
           <p>Auch ohne Einzelverkauf sprechen Sie mit einer vorliegenden Teilungserklärung mehr Kaufinteressenten an.</p>
-        </div>
-        <div>
+        </article>
+        <article class="reason">
+          <div class="vis"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M6 27 18 17l12 10v21H6z" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M26 23l12-10 12 10v25H30" fill="none" stroke="#121417" stroke-width="2.2"/><rect x="13" y="36" width="10" height="12" fill="#1f4fd1"/><path d="M36 48V36h8v12" fill="none" stroke="#1f4fd1" stroke-width="2.2"/></svg></div>
           <h3>Erbe und Schenkung</h3>
           <p class="lead">Sie regeln die zukünftige Erbschaft oder Schenkung und vermeiden so spätere Erbstreitigkeiten.</p>
           <p>Sie haben eine Immobilie geerbt und möchten sie aufteilen? Sprechen Sie uns an.</p>
-        </div>
-        <div>
+        </article>
+        <article class="reason">
+          <div class="vis"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M8 48V8h40v40zM8 28h40" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M8 28l6 6 6-6 6 6 6-6 6 6 6-6 4 4" fill="none" stroke="#1f4fd1" stroke-width="2.2"/><rect x="14" y="14" width="8" height="8" fill="#1f4fd1"/><rect x="34" y="14" width="8" height="8" fill="#1f4fd1"/><path d="M24 48V38h8v10" fill="none" stroke="#121417" stroke-width="2.2"/></svg></div>
           <h3>Wohnen und Gewerbe trennen</h3>
           <p class="lead">Sie sorgen für rechtssichere Eigentumsverhältnisse und eine saubere Trennung.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -296,12 +335,12 @@
         <h2 id="ablauf-title">Fünf Schritte bis zum Notar.</h2>
         <p>Sie liefern die Unterlagen, wir übernehmen die technische und organisatorische Abwicklung bis zur Abgeschlossenheitsbescheinigung.</p>
       </div>
-      <ol class="steps">
-        <li><h3>Unterlagen prüfen</h3><p>Pläne, Grundbuchauszug und Eigentümerangaben werden auf Vollständigkeit geprüft.</p></li>
-        <li><h3>Aufteilungsplan erstellen</h3><p>Auf Basis Ihrer Bestandspläne entstehen die erforderlichen Aufteilungspläne.</p></li>
-        <li><h3>Einheiten kennzeichnen</h3><p>Wohnungen, Stellplätze, Kellerräume und Gemeinschaftsflächen werden eindeutig zugeordnet.</p></li>
-        <li><h3>Behörde begleiten</h3><p>Wir stellen den Antrag, sprechen mit dem Bauamt und klären Rückfragen.</p></li>
-        <li><h3>Unterlagen übergeben</h3><p>Sie erhalten alles vollständig und notarfertig aufbereitet.</p></li>
+      <ol class="steps" id="steps">
+        <li><span class="num">1</span><h3>Unterlagen prüfen</h3><p>Pläne, Grundbuchauszug und Eigentümerangaben werden auf Vollständigkeit geprüft.</p></li>
+        <li><span class="num">2</span><h3>Aufteilungsplan erstellen</h3><p>Auf Basis Ihrer Bestandspläne entstehen die erforderlichen Aufteilungspläne.</p></li>
+        <li><span class="num">3</span><h3>Einheiten kennzeichnen</h3><p>Wohnungen, Stellplätze, Kellerräume und Gemeinschaftsflächen werden eindeutig zugeordnet.</p></li>
+        <li><span class="num">4</span><h3>Behörde begleiten</h3><p>Wir stellen den Antrag, sprechen mit dem Bauamt und klären Rückfragen.</p></li>
+        <li><span class="num">5</span><h3>Unterlagen übergeben</h3><p>Sie erhalten alles vollständig und notarfertig aufbereitet.</p></li>
       </ol>
     </div>
   </section>
@@ -338,6 +377,7 @@
       <div class="docs">
         <div>
           <h3>Das brauchen wir von Ihnen</h3>
+          <p>Mehr ist für den Start nicht nötig.</p>
           <ol>
             <li>Genehmigte Baupläne <span>Bauamt oder Bauakte</span></li>
             <li>Grundbuchauszug <span>Grundbuchamt</span></li>
@@ -348,9 +388,9 @@
           <h3>Nicht im Festpreis enthalten</h3>
           <p>Diese Gebühren fallen direkt bei den Stellen an.</p>
           <ul>
-            <li>Behördengebühren</li>
-            <li>Notargebühren</li>
-            <li>Grundbuchgebühren</li>
+            <li><s>Behördengebühren</s></li>
+            <li><s>Notargebühren</s></li>
+            <li><s>Grundbuchgebühren</s></li>
           </ul>
         </div>
       </div>
@@ -510,11 +550,54 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
   requestAnimationFrame(loop);
 })();
 
+/* ---------- Scroll-Einblendungen ---------- */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const groups = ['.sec-head h2', '.sec-head p', '.reason', '.steps li', '.calc > div', '.pricing .note', '.docs > div', '.docs li', '.reach > *', '#anfrage'];
+  const els = [];
+  groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
+    if (el.hasAttribute('data-r')) return;
+    el.setAttribute('data-r', '');
+    el.style.setProperty('--i', [...el.parentElement.children].filter(c => c.matches(sel)).indexOf(el));
+    els.push(el);
+  }));
+  const countUp = el => {
+    const end = +el.dataset.count, t0 = performance.now(), d = 1400;
+    const tick = now => { const k = Math.min(1, (now - t0) / d); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+    if (!reduce) e.target.querySelectorAll('[data-count]').forEach(countUp);
+  }), { rootMargin: '0px 0px -12% 0px' });
+  els.forEach(el => io.observe(el));
+
+  // Zeitstrahl füllt sich beim Scrollen
+  const list = document.getElementById('steps'), items = [...list.children];
+  const vertical = matchMedia('(max-width:900px)');
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const r = list.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight * .7 - r.top) / (r.height || 1)));
+    const prog = vertical.matches ? p : Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / (innerHeight * .45)));
+    list.style.setProperty('--prog', prog.toFixed(3));
+    items.forEach((li, i) => {
+      const at = vertical.matches ? (li.offsetTop + 10) / r.height : i / (items.length - 1) - .001;
+      li.classList.toggle('on', prog >= at);
+    });
+  };
+  const req = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); update();
+})();
+
 /* ---------- Preisrechner ---------- */
 (() => {
   const r = document.getElementById('unitsRange'), num = document.getElementById('unitsNum');
   const tier = document.getElementById('tier'), price = document.getElementById('price'), cta = document.getElementById('priceCta');
   const sel = document.getElementById('einheiten');
+  let last = '';
   function update() {
     const v = +r.value, over = v > 10;
     r.style.setProperty('--p', ((v - r.min) / (r.max - r.min) * 100) + '%');
@@ -524,6 +607,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     else if (v <= 6)  { tier.textContent = 'Haus mit bis zu 6 Einheiten';  price.textContent = '1.200 €';     cta.dataset.opt = '3-6'; }
     else if (v <= 10) { tier.textContent = 'Haus mit bis zu 10 Einheiten'; price.textContent = '1.800 €';     cta.dataset.opt = '7-10'; }
     else              { tier.textContent = 'Mehr als 10 Einheiten';        price.textContent = 'Auf Anfrage'; cta.dataset.opt = '10+'; }
+    if (price.textContent !== last) { last = price.textContent; price.classList.remove('bump'); void price.offsetWidth; price.classList.add('bump'); }
   }
   r.addEventListener('input', update);
   cta.addEventListener('click', () => { sel.value = cta.dataset.opt; });
