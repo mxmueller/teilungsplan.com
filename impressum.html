@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressum – Aufteilungsservice Lehmann</title>
+<meta name="description" content="Impressum des Aufteilungsservice Andrea Lehmann, Kandel.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23fff'/><rect x='20' y='26' width='15' height='9' fill='%231f4fd1'/><path d='M5 17 20 5l15 12v18H5zM5 17h30M20 17v18M5 26h30' fill='none' stroke='%23121417' stroke-width='2.2'/></svg>">
+<style>
+  :root{
+    --paper:#ecedef;
+    --white:#ffffff;
+    --ink:#121417;
+    --grey:#5d636b;
+    --rule:#c9ccd1;
+    --blue:#1f4fd1;
+    --blue-dark:#173ea6;
+    --font:"Helvetica Neue",Helvetica,"Arial Nova",Arial,system-ui,sans-serif;
+    --pad:clamp(1.25rem,4vw,3rem);
+    --bar:72px;
+    --r:4px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  p{margin:0}
+  h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.04em;line-height:.95}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  .frame{padding-inline:var(--pad);max-width:1440px;margin-inline:auto}
+
+  .btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--blue);color:#fff;font:inherit;font-weight:700;font-size:1rem;padding:1rem 1.4rem;border:0;text-decoration:none;cursor:pointer;transition:background .15s}
+  .btn:hover{background:var(--blue-dark)}
+  .btn svg{width:18px;height:18px}
+  .btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+  .btn.line:hover{background:var(--ink);color:#fff}
+
+  /* Kopfzeile */
+  .bar{position:fixed;inset:0 0 auto;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);transition:box-shadow .25s}
+  .bar.scrolled{box-shadow:0 10px 30px -18px rgba(18,20,23,.45)}
+  .bar .frame{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:var(--bar)}
+  .logo{display:flex;align-items:center;gap:.8rem;text-decoration:none;white-space:nowrap}
+  .logo svg{width:38px;height:38px;flex:none}
+  .wordmark{display:flex;flex-direction:column;justify-content:center;gap:.28rem;padding-left:.8rem;border-left:1px solid var(--rule);height:38px}
+  .wordmark b{font-size:1.3rem;font-weight:800;letter-spacing:-.045em;line-height:.9}
+  .wordmark small{font-size:.74rem;font-weight:600;color:var(--grey);letter-spacing:.005em;line-height:1}
+  .bar nav{display:flex;align-items:center;gap:.25rem}
+  .bar nav a:not(.btn){position:relative;padding:.6rem .9rem;text-decoration:none;font-weight:600;font-size:.95rem;color:var(--grey);transition:color .15s}
+  .bar nav a:not(.btn)::after{content:"";position:absolute;left:.9rem;right:.9rem;bottom:.3rem;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+  .bar nav a:not(.btn):hover,.bar nav a.active{color:var(--ink)}
+  .bar nav a:not(.btn):hover::after,.bar nav a.active::after{transform:scaleX(1)}
+  .bar nav .btn{margin-left:.75rem;padding:.7rem 1.1rem;font-size:.92rem}
+  @media (max-width:760px){.bar nav a:not(.btn){display:none}.bar nav .btn{margin-left:0;padding:.65rem .95rem}.logo svg{width:32px;height:32px}.wordmark{height:32px;padding-left:.65rem}.wordmark b{font-size:1.15rem}}
+  @media (max-width:420px){.bar .frame{gap:.75rem}.bar nav .btn{white-space:nowrap;padding:.6rem .8rem;font-size:.85rem}.logo{gap:.6rem}.logo svg{width:28px;height:28px}.wordmark{padding-left:.6rem}.wordmark b{font-size:1rem}.wordmark small{font-size:.68rem}}
+
+  footer{background:var(--ink);color:#a3a8b0;font-size:.88rem;padding-block:1.75rem}
+  footer .frame{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+  footer nav{display:flex;gap:1.5rem}
+  footer a{text-decoration:none;color:#fff}
+  footer a:hover{text-decoration:underline}
+
+  .btn,.bar nav .btn{border-radius:var(--r)}
+  :focus-visible{border-radius:var(--r)}
+  .legal{padding-top:calc(var(--bar) + clamp(3rem,8vw,6rem));padding-bottom:clamp(4rem,10vw,7rem)}
+  .legal h1{font-size:clamp(2.6rem,6vw,5rem)}
+  .legal .inner{max-width:46rem}
+  .legal h2{font-size:1.35rem;letter-spacing:-.02em;line-height:1.2;margin-top:2.75rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+  .legal h2:first-of-type{border-top:2px solid var(--ink)}
+  .legal p,.legal ul{margin-top:.75rem;color:#33373e}
+  .legal ul{padding-left:1.2rem}
+  .legal li+li{margin-top:.35rem}
+  .legal a{color:var(--blue)}
+  .legal .lead{font-size:1.15rem;color:var(--grey);margin-top:1.25rem}
+  .legal .stand{margin-top:3rem;color:var(--grey);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <div class="frame">
+    <a class="logo" href="index.html" aria-label="Aufteilungsservice Lehmann, zur Startseite">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="20" y="26" width="15" height="9" fill="#1f4fd1"/><path d="M5 17 20 5l15 12v18H5zM5 17h30M20 17v18M5 26h30" fill="none" stroke="#121417" stroke-width="2.2" stroke-linejoin="miter"/></svg>
+      <span class="wordmark"><b>Aufteilungsservice</b><small>Andrea Lehmann</small></span>
+    </a>
+    <nav aria-label="Seitennavigation">
+      <a href="index.html#vorteile">Vorteile</a>
+      <a href="index.html#ablauf">Ablauf</a>
+      <a href="index.html#preise">Preise</a>
+      <a href="index.html#unterlagen">Unterlagen</a>
+      <a class="btn cta" href="index.html#kontakt">Anfrage stellen</a>
+    </nav>
+  </div>
+</header>
+
+<main class="frame legal">
+  <h1>Impressum</h1>
+  <div class="inner">
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>Andrea Lehmann<br>Im Apfelgarten 18<br>76870 Kandel</p>
+
+    <h2>Vertreten durch</h2>
+    <p>Andrea Lehmann</p>
+
+    <h2>Kontakt</h2>
+    <p>Telefon: <a href="tel:+497275617358">07275 617358</a><br>E-Mail: <a href="mailto:info@teilungsplan.com">info@teilungsplan.com</a></p>
+
+    <h2>Umsatzsteuer-ID</h2>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE 148 516 929</p>
+
+    <h2>Aufsichtsbehörde</h2>
+    <p>Verbandsgemeindeverwaltung Kandel</p>
+
+    <h2>Urheberrecht</h2>
+    <p>Die Text- und Bildrechte dieser Seite liegen beim Betreiber bzw. dem Fotografen dieses Internetangebotes. Jegliche kommerzielle Verwendung von Bildern dieser Internetseite ist ohne unsere Erlaubnis nicht gestattet. Ebenso nicht gestattet ist die Veränderung oder Weiterverarbeitung der Bilder dieser Website.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="frame">
+    <p>© <span id="jahr">2026</span> Aufteilungsservice Andrea Lehmann, Kandel. USt-IdNr. DE148516929</p>
+    <nav aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+document.getElementById('jahr').textContent = new Date().getFullYear();
+addEventListener('scroll', () => document.getElementById('bar').classList.toggle('scrolled', scrollY > 4), { passive: true });
+</script>
+</body>
+</html>

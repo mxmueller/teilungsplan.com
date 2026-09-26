@@ -102,26 +102,20 @@
   }
 
   section{scroll-margin-top:var(--bar);padding-block:clamp(4.5rem,10vw,8rem);border-top:2px solid var(--ink)}
-  .sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:2rem;align-items:end}
-  .sec-head h2{font-size:clamp(2.4rem,5.4vw,4.8rem)}
-  .sec-head p{color:var(--grey);font-size:1.15rem;max-width:34rem}
-  @media (max-width:900px){.sec-head{grid-template-columns:1fr;gap:1.25rem}}
+  .sec-head{display:grid;gap:1.5rem;justify-items:start}
+  .sec-head h2{font-size:clamp(2.4rem,5.4vw,4.8rem);max-width:22ch}
+  .sec-head p{color:var(--grey);font-size:clamp(1.1rem,1.4vw,1.3rem);max-width:40rem}
+  @media (max-width:900px){.sec-head{gap:1.25rem}}
 
   /* Anlässe */
-  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,auto);gap:0 1.25rem;margin-top:4rem}
-  .reason{grid-row:span 4;display:grid;grid-template-rows:subgrid;row-gap:0;background:var(--white);padding:clamp(1.5rem,2.6vw,2.25rem);border-radius:var(--r);border-top:4px solid var(--ink);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);gap:0 1.25rem;margin-top:3.5rem}
+  .reason{grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:0;background:var(--white);padding:1.75rem;border-radius:var(--r);border-top:4px solid var(--ink);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
   .reason:hover{transform:translateY(-6px);box-shadow:0 24px 40px -28px rgba(18,20,23,.45)}
-  .reason .vis{height:4.5rem;display:flex;align-items:flex-end}
-  .reason .vis svg{width:56px;height:56px}
-  .reason h3{font-size:clamp(1.45rem,2vw,1.8rem);letter-spacing:-.03em;line-height:1.1;margin-top:1.5rem}
-  .reason p{color:var(--grey);margin-top:1rem}
-  .reason p.lead{color:var(--ink);font-weight:600;padding-top:1rem;border-top:1px solid var(--rule)}
-  .reason.hi{background:var(--blue);color:#fff;border-top-color:#0f2f86}
-  .reason.hi p{color:#d3def7}
-  .reason.hi p.lead{color:#fff;border-top-color:rgba(255,255,255,.3)}
-  .stat{font-size:clamp(3rem,4.6vw,4.4rem);font-weight:800;letter-spacing:-.05em;line-height:.85;white-space:nowrap}
-  .stat small{font-size:.35em;letter-spacing:0;margin-left:.1em}
-  @media (max-width:900px){.reasons{grid-template-columns:1fr;grid-template-rows:none;gap:1.25rem}.reason{grid-row:auto;grid-template-rows:none}}
+  .reason h3{display:flex;align-items:center;gap:.9rem;font-size:clamp(1.3rem,1.7vw,1.55rem);letter-spacing:-.03em;line-height:1.15}
+  .reason h3 svg{width:44px;height:44px;flex:none}
+  .reason p{color:var(--grey);margin-top:.75rem}
+  .reason p.lead{color:var(--ink);font-weight:600;margin-top:1.25rem}
+  @media (max-width:900px){.reasons{grid-template-columns:1fr;grid-template-rows:none;gap:1rem}.reason{grid-row:auto;grid-template-rows:none}}
 
   /* Ablauf als Zeitstrahl */
   .ablauf{background:var(--white)}
@@ -308,21 +302,18 @@
         <p>Drei Anlässe, bei denen sich die Aufteilung in Eigentumswohnungen für Sie lohnt.</p>
       </div>
       <div class="reasons">
-        <article class="reason hi">
-          <div class="vis"><p class="stat" aria-label="15 bis 25 Prozent"><span data-count="15">15</span>–<span data-count="25">25</span><small>%</small></p></div>
-          <h3>Verkauf</h3>
-          <p class="lead">Sie möchten Ihr Mehrfamilienhaus verkaufen? Beim Einzelverkauf der Wohnungen erzielen Sie häufig <span style="white-space:nowrap">15–25 %</span> höhere Verkaufserlöse.</p>
+        <article class="reason">
+          <h3><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M4 20 16 10l12 10v20H4z" fill="none" stroke="#121417" stroke-width="2.2"/><rect x="12" y="30" width="8" height="10" fill="#1f4fd1"/><path d="M28 14h10v10l-9 9-10-10z" fill="#fff" stroke="#1f4fd1" stroke-width="2.2" stroke-linejoin="round"/><circle cx="34" cy="18" r="1.8" fill="#1f4fd1"/></svg>Verkauf</h3>
+          <p class="lead">Sie möchten Ihr Mehrfamilienhaus verkaufen? Beim Einzelverkauf der Wohnungen erzielen Sie häufig 15 bis 25 % höhere Verkaufserlöse.</p>
           <p>Auch ohne Einzelverkauf sprechen Sie mit einer vorliegenden Teilungserklärung mehr Kaufinteressenten an.</p>
         </article>
         <article class="reason">
-          <div class="vis"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M6 27 18 17l12 10v21H6z" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M26 23l12-10 12 10v25H30" fill="none" stroke="#121417" stroke-width="2.2"/><rect x="13" y="36" width="10" height="12" fill="#1f4fd1"/><path d="M36 48V36h8v12" fill="none" stroke="#1f4fd1" stroke-width="2.2"/></svg></div>
-          <h3>Erbe und Schenkung</h3>
+          <h3><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M3 22 13 14l10 8v18H3z" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M21 18l10-8 10 8v22H25" fill="none" stroke="#121417" stroke-width="2.2"/><rect x="9" y="31" width="8" height="9" fill="#1f4fd1"/><path d="M29 40v-9h6v9" fill="none" stroke="#1f4fd1" stroke-width="2.2"/></svg>Erbe und Schenkung</h3>
           <p class="lead">Sie regeln die zukünftige Erbschaft oder Schenkung und vermeiden so spätere Erbstreitigkeiten.</p>
           <p>Sie haben eine Immobilie geerbt und möchten sie aufteilen? Sprechen Sie uns an.</p>
         </article>
         <article class="reason">
-          <div class="vis"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M8 48V8h40v40zM8 28h40" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M8 28l6 6 6-6 6 6 6-6 6 6 6-6 4 4" fill="none" stroke="#1f4fd1" stroke-width="2.2"/><rect x="14" y="14" width="8" height="8" fill="#1f4fd1"/><rect x="34" y="14" width="8" height="8" fill="#1f4fd1"/><path d="M24 48V38h8v10" fill="none" stroke="#121417" stroke-width="2.2"/></svg></div>
-          <h3>Wohnen und Gewerbe trennen</h3>
+          <h3><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M5 40V5h34v35zM5 22h34" fill="none" stroke="#121417" stroke-width="2.2"/><path d="M5 22l5 5 5-5 5 5 5-5 5 5 5-5 4 4" fill="none" stroke="#1f4fd1" stroke-width="2.2"/><rect x="10" y="10" width="7" height="7" fill="#1f4fd1"/><rect x="27" y="10" width="7" height="7" fill="#1f4fd1"/><path d="M19 40v-8h6v8" fill="none" stroke="#121417" stroke-width="2.2"/></svg>Wohnen und Gewerbe trennen</h3>
           <p class="lead">Sie sorgen für rechtssichere Eigentumsverhältnisse und eine saubere Trennung.</p>
         </article>
       </div>
@@ -552,7 +543,6 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
 
 /* ---------- Scroll-Einblendungen ---------- */
 (() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const groups = ['.sec-head h2', '.sec-head p', '.reason', '.steps li', '.calc > div', '.pricing .note', '.docs > div', '.docs li', '.reach > *', '#anfrage'];
   const els = [];
   groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
@@ -561,15 +551,9 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     el.style.setProperty('--i', [...el.parentElement.children].filter(c => c.matches(sel)).indexOf(el));
     els.push(el);
   }));
-  const countUp = el => {
-    const end = +el.dataset.count, t0 = performance.now(), d = 1400;
-    const tick = now => { const k = Math.min(1, (now - t0) / d); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
-    requestAnimationFrame(tick);
-  };
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('in'); io.unobserve(e.target);
-    if (!reduce) e.target.querySelectorAll('[data-count]').forEach(countUp);
   }), { rootMargin: '0px 0px -12% 0px' });
   els.forEach(el => io.observe(el));
 
