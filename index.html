@@ -234,6 +234,7 @@
   input[type=range]::-moz-range-thumb{border-radius:var(--r)}
   :focus-visible{border-radius:var(--r)}
 </style>
+<script src="consent.js" defer></script>
 </head>
 <body>
 
@@ -622,6 +623,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
       if (!data.success) throw new Error(data.message);
       form.reset();
       status.textContent = 'Anfrage gesendet. Wir melden uns bei Ihnen.';
+      if (window.tpLeadConversion) tpLeadConversion();
       status.classList.add('ok');
     } catch {
       status.innerHTML = 'Senden fehlgeschlagen. Schreiben Sie uns direkt an <a href="mailto:info@teilungsplan.com">info@teilungsplan.com</a>.';
