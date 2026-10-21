@@ -1,14 +1,13 @@
 /* Einwilligung (Cookie-Banner) und Google-Ads-Conversion-Tracking
-   Consent Mode v2, Basic-Modus: Das Google-Script wird erst nach „Akzeptieren“ geladen. */
+   Der Google-Tag selbst steht im <head> jeder Seite (Consent Mode v2, Standard: abgelehnt).
+   Hier wird nur die Einwilligung abgefragt, gespeichert und an Google übergeben. */
 (() => {
-  const ADS_ID = 'AW-18512644653';
-  const LEAD = ADS_ID + '/bWJBCNSMyJwdEK2UwvtE';
+  const LEAD = 'AW-18512644653/bWJBCNSMyJwdEK2UwvtE';
   const KEY = 'tp-consent';
   const MAX_AGE = 365 * 24 * 3600e3; // nach 12 Monaten erneut fragen
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { dataLayer.push(arguments); };
-  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
 
   const read = () => {
     try {
@@ -18,20 +17,9 @@
   };
   const save = c => { try { localStorage.setItem(KEY, JSON.stringify({ c, t: Date.now() })); } catch {} };
 
-  let loaded = false;
-  const grant = () => {
-    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
-    if (loaded) return;
-    loaded = true;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ADS_ID;
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', ADS_ID);
-  };
+  const grant = () => gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
   const deny = () => {
-    if (loaded) gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     // bereits gesetzte Google-Cookies entfernen
     document.cookie.split(';').map(c => c.split('=')[0].trim()).filter(n => /^_gcl|^_gac|^_ga/.test(n)).forEach(n => {
       ['', '; domain=' + location.hostname, '; domain=.' + location.hostname.replace(/^www\./, '')].forEach(d => {
@@ -40,8 +28,9 @@
     });
   };
 
-  // Conversion nur nach Einwilligung und nur bei erfolgreicher Formularübermittlung
-  window.tpLeadConversion = () => { if (read() === 'granted') gtag('event', 'conversion', { send_to: LEAD }); };
+  // Conversion nur bei erfolgreicher Formularübermittlung. Ohne Einwilligung sendet Google
+  // laut Consent Mode nur einen cookielosen, anonymisierten Treffer.
+  window.tpLeadConversion = () => gtag('event', 'conversion', { send_to: LEAD });
 
   const css = `
   .cc{position:fixed;z-index:50;left:1rem;right:1rem;bottom:1rem;max-width:34rem;margin-left:auto;background:var(--white,#fff);color:var(--ink,#121417);border-radius:var(--r,4px);border-top:4px solid var(--ink,#121417);box-shadow:0 24px 60px -20px rgba(18,20,23,.45);padding:1.5rem;font-size:.95rem;line-height:1.5}
@@ -64,7 +53,7 @@
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-labelledby', 'cc-title');
     box.innerHTML = `<h2 id="cc-title">Datenschutz-Einstellungen</h2>
-      <p>Mit Ihrer Einwilligung messen wir über Google Ads, ob unsere Anzeigen zu Anfragen führen. Dafür setzt Google Cookies und erhält Nutzungsdaten, auch in den USA. Sie können Ihre Wahl jederzeit über „Cookie-Einstellungen“ unten auf der Seite ändern. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <p>Wir messen über Google Ads, ob unsere Anzeigen zu Anfragen führen. Mit Ihrer Einwilligung setzt Google dafür Cookies und erhält genauere Nutzungsdaten, auch in den USA. Ohne Einwilligung werden keine Cookies gesetzt. Sie können Ihre Wahl jederzeit über „Cookie-Einstellungen“ unten auf der Seite ändern. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
       <div class="cc-btns"><button type="button" class="btn line" data-c="denied">Ablehnen</button><button type="button" class="btn" data-c="granted">Akzeptieren</button></div>`;
     box.addEventListener('click', e => {
       const c = e.target.closest('[data-c]')?.dataset.c;
@@ -85,9 +74,8 @@
       nav.appendChild(b);
     }
     const c = read();
-    if (c === 'granted') grant();
     // Auf Impressum und Datenschutz nicht automatisch einblenden, damit man sie ungestört lesen kann
-    else if (c === null && !document.documentElement.hasAttribute('data-no-banner')) show();
+    if (c === null && !document.documentElement.hasAttribute('data-no-banner')) show();
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
