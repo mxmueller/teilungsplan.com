@@ -30,6 +30,7 @@ gtag('config', 'AW-18512644653');
     --rule:#c9ccd1;
     --blue:#1f4fd1;
     --blue-dark:#173ea6;
+    --accent:#ffb020;
     --font:"Helvetica Neue",Helvetica,"Arial Nova",Arial,system-ui,sans-serif;
     --pad:clamp(1.25rem,4vw,3rem);
     --bar:72px;
@@ -209,7 +210,13 @@ gtag('config', 'AW-18512644653');
   .reach > *{padding:1.1rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:700;font-size:1.15rem}
   .reach a:hover{color:var(--blue)}
   .reach span{display:block;font-size:.85rem;font-weight:600;color:var(--grey);margin-bottom:.2rem}
-  form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;border-top:2px solid var(--ink);padding-top:1.5rem}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  .offer{grid-column:1/-1;display:flex;align-items:center;gap:1rem;background:var(--accent);color:var(--ink);padding:1.15rem 1.35rem;border-radius:var(--r);box-shadow:0 18px 36px -24px rgba(180,110,0,.9);position:relative;overflow:hidden}
+  .offer svg{width:2.1rem;height:2.1rem;flex:none}
+  .offer b{display:block;font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .offer span{display:block;font-size:.95rem;font-weight:600;color:#3d2a00;margin-top:.2rem}
+  @media (prefers-reduced-motion:no-preference){.offer.in::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-100%);animation:shine 1.4s .5s ease-out}}
+  @keyframes shine{to{transform:translateX(100%)}}
   .field{display:grid;gap:.45rem}
   .field.full{grid-column:1/-1}
   label{font-size:.9rem;font-weight:700}
@@ -406,7 +413,7 @@ gtag('config', 'AW-18512644653');
     <div class="frame">
       <div class="sec-head">
         <h2 id="kontakt-title">Erzählen Sie uns von Ihrem Haus.</h2>
-        <p>Ein paar Eckdaten genügen. Sie bekommen eine Einschätzung und ein Festpreisangebot.</p>
+        <p>Sie möchten wissen, was die Aufteilung Ihres Hauses kostet? Ein paar Angaben genügen. Sie bekommen eine Einschätzung und ein Festpreisangebot.</p>
       </div>
       <div class="contact-grid">
         <div class="reach">
@@ -421,8 +428,13 @@ gtag('config', 'AW-18512644653');
           <input type="hidden" name="from_name" value="Aufteilungsservice Website">
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
+          <div class="offer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#121417"/><path d="M7 12.5l3.2 3L17 8.5" fill="none" stroke="#ffb020" stroke-width="2.4"/></svg>
+            <div><b>Kostenlos und unverbindlich anfragen</b><span>Antwort mit Einschätzung und Festpreisangebot</span></div>
+          </div>
+
           <div class="field"><label for="vorname">Vorname</label><input id="vorname" name="vorname" autocomplete="given-name" required></div>
-          <div class="field"><label for="name">Nachname</label><input id="name" name="name" autocomplete="family-name" required></div>
+          <div class="field"><label for="name">Nachname <span class="opt">(optional)</span></label><input id="name" name="name" autocomplete="family-name"></div>
           <div class="field"><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="tel">Telefon <span class="opt">(optional)</span></label><input id="tel" name="telefon" type="tel" autocomplete="tel"></div>
           <div class="field"><label for="firma">Firma <span class="opt">(optional)</span></label><input id="firma" name="firma" autocomplete="organization"></div>
@@ -436,22 +448,14 @@ gtag('config', 'AW-18512644653');
               <option value="10+">Mehr als 10 Einheiten</option>
             </select>
           </div>
-          <div class="field full"><label for="ort">Adresse des Objekts</label><input id="ort" name="objekt" placeholder="Straße, PLZ, Ort" required></div>
-          <div class="field full">
-            <label for="plaene">Liegen genehmigte Baupläne vor?</label>
-            <select id="plaene" name="bauplaene">
-              <option>Ja, vollständig</option>
-              <option>Teilweise</option>
-              <option>Nein oder unklar</option>
-            </select>
-          </div>
+          <div class="field full"><label for="ort">Adresse des Objekts <span class="opt">(optional)</span></label><input id="ort" name="objekt" placeholder="Straße, PLZ, Ort"></div>
           <div class="field full"><label for="nachricht">Nachricht <span class="opt">(optional)</span></label><textarea id="nachricht" name="nachricht" placeholder="Baujahr, Besonderheiten, gewünschter Zeitrahmen"></textarea></div>
           <div class="consent">
             <input id="dsgvo" type="checkbox" name="datenschutz" value="zugestimmt" required>
             <label for="dsgvo">Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</label>
           </div>
           <div class="form-foot">
-            <button class="btn" type="submit">Anfrage senden</button>
+            <button class="btn" type="submit">Kostenlos anfragen</button>
             <p class="status" id="status" role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -556,7 +560,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
 
 /* ---------- Scroll-Einblendungen ---------- */
 (() => {
-  const groups = ['.sec-head h2', '.sec-head p', '.reason', '.steps li', '.calc > div', '.pricing .note', '.docs > div', '.docs li', '.reach > *', '#anfrage'];
+  const groups = ['.sec-head h2', '.sec-head p', '.reason', '.steps li', '.calc > div', '.pricing .note', '.docs > div', '.docs li', '.reach > *', '#anfrage', '.offer'];
   const els = [];
   groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (el.hasAttribute('data-r')) return;
@@ -642,7 +646,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
       status.innerHTML = 'Senden fehlgeschlagen. Schreiben Sie uns direkt an <a href="mailto:info@teilungsplan.com">info@teilungsplan.com</a>.';
       status.classList.add('err');
     } finally {
-      btn.disabled = false; btn.textContent = 'Anfrage senden';
+      btn.disabled = false; btn.textContent = 'Kostenlos anfragen';
     }
   });
 })();
